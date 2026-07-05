@@ -38,10 +38,16 @@ function authRemoteUrl() {
   return `https://x-access-token:${encodeURIComponent(TOKEN)}@github.com/${REPO}.git`;
 }
 
-function runGit(args, options = {}) {
+function runGit(...argv) {
+  let options = {};
+  const last = argv[argv.length - 1];
+  if (last && typeof last === "object" && "allowFail" in last) {
+    options = argv.pop();
+  }
+
   const result = spawnSync(
     "git",
-    ["-c", "credential.helper=", ...args],
+    ["-c", "credential.helper=", ...argv],
     {
       cwd: ROOT,
       encoding: "utf8",
@@ -55,7 +61,7 @@ function runGit(args, options = {}) {
 
   if (result.status !== 0) {
     if (options.allowFail) return detail;
-    throw new Error(formatGitError(detail || `git ${args.join(" ")} failed`));
+    throw new Error(formatGitError(detail || `git ${argv.join(" ")} failed`));
   }
 
   return detail;
