@@ -28,12 +28,12 @@
           "links": [
             {
               "name": "Link 1",
-              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783244346-0-0-5e13a23b9771b4115ead44426afca078",
+              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783261450-0-0-f65bdddba8905cb9beb0b0b4f6050630",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel1"
             },
             {
               "name": "Link 2",
-              "url": "https://live1.pro2cdnlive.com/live/channel1.m3u8?wsSecret=282e976f2d5cfceec125788ccabbca24&wsABSTime=1783287547",
+              "url": "https://live1.pro2cdnlive.com/live/channel1.m3u8?wsSecret=942c94b9d8f659fdf2f08defb42b3d66&wsABSTime=1783304650",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/7/link/channel1"
             }
           ]
@@ -52,12 +52,12 @@
           "links": [
             {
               "name": "Link 1",
-              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783244346-0-0-5e13a23b9771b4115ead44426afca078",
+              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783261449-0-0-fe463b18127ed7de91e6677702461880",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel1"
             },
             {
               "name": "Link 2",
-              "url": "https://live1.pro2cdnlive.com/live/channel1.m3u8?wsSecret=282e976f2d5cfceec125788ccabbca24&wsABSTime=1783287547",
+              "url": "https://live1.pro2cdnlive.com/live/channel1.m3u8?wsSecret=e17b2dd96e316e96103e0ef7ba432099&wsABSTime=1783304651",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/7/link/channel1"
             }
           ]
@@ -66,77 +66,24 @@
     },
     {
       "league_name": "KOR D1",
-      "league_icon": "https://imgts.sportpulseapiz.com/football/competition/gy0or5jhlxgqwzv/image/small",
+      "league_icon": "https://imgts.sportpulseapiz.com/football/competition/gy0or5jhexdqwzv/image/small",
       "matches": [
         {
           "home_team": {
-            "name": "Seoul FC",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/gx7lm7phd18m2wd/image/small"
+            "name": "Sidama Bunna",
+            "logo": "https://imgts.sportpulseapiz.com/football/team/x7lm7phozxgm2wd/image/small"
           },
           "away_team": {
-            "name": "Incheon United",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/yl5ergph64kr8k0/image/small"
+            "name": "Ethio Electric FC",
+            "logo": "https://imgts.sportpulseapiz.com/football/team/y0or5jh4pppqwzv/image/small"
           },
           "month": "7/5/2026",
-          "time": "5:30:00 PM",
+          "time": "8:10:00 PM",
           "links": [
             {
               "name": "Link 1",
-              "url": "https://live2.pro2cdnlive.com/live/channel5.m3u8",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/8/link/channel5"
-            },
-            {
-              "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel5.m3u8?auth_key=3000001783244347-0-0-a209a86f7f94bb753618b0585fdd4b8a",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel5"
-            }
-          ]
-        },
-        {
-          "home_team": {
-            "name": "Gwangju FC",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/8y39mp1hn37mojx/image/small"
-          },
-          "away_team": {
-            "name": "Ulsan Hyundai",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/9k82rekh49zrepz/image/small"
-          },
-          "month": "7/5/2026",
-          "time": "5:30:00 PM",
-          "links": [
-            {
-              "name": "Link 1",
-              "url": "https://live2.pro2cdnlive.com/live/channel1.m3u8",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/8/link/channel1"
-            },
-            {
-              "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783244347-0-0-b62216acb110a31ceb4c655400e656a9",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel1"
-            }
-          ]
-        },
-        {
-          "home_team": {
-            "name": "Gimcheon Sangmu",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/56ypq3nho79md7o/image/small"
-          },
-          "away_team": {
-            "name": "Jeju SK FC",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/8y39mp1hn57mojx/image/small"
-          },
-          "month": "7/5/2026",
-          "time": "5:30:00 PM",
-          "links": [
-            {
-              "name": "Link 1",
-              "url": "https://live2.pro2cdnlive.com/live/channel11.m3u8",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/8/link/channel11"
-            },
-            {
-              "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel11.m3u8?auth_key=3000001783244347-0-0-6409ff72e5bd103bdd25e1e3c6b0fb27",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel11"
+              "url": "https://live1.pro2cdnlive.com/live/channel36.m3u8?wsSecret=2dee0faaa997abf54d65c5ae47d5b203&wsABSTime=1783304650",
+              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/7/link/channel36"
             }
           ]
         }
@@ -145,56 +92,7 @@
     {
       "league_name": "CHA CSL",
       "league_icon": "https://imgts.sportpulseapiz.com/football/competition/9k82rekh52repzj/image/small",
-      "matches": [
-        {
-          "home_team": {
-            "name": "Qingdao Manatee",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/9dn1m1ghd9pmoep/image/small"
-          },
-          "away_team": {
-            "name": "Chengdu Rongcheng",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/23xmvkhdp60qg8n/image/small"
-          },
-          "month": "7/5/2026",
-          "time": "6:00:00 PM",
-          "links": [
-            {
-              "name": "Link 1",
-              "url": "https://live2.pro2cdnlive.com/live/channel15.m3u8",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/8/link/channel15"
-            },
-            {
-              "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel15.m3u8?auth_key=3000001783244347-0-0-7d3b84dd883da097facf71f11c09c209",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel15"
-            }
-          ]
-        },
-        {
-          "home_team": {
-            "name": "Shanghai Shenhua",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/z8yomo4hjjnq0j6/image/small"
-          },
-          "away_team": {
-            "name": "Zhejiang Greentown",
-            "logo": "https://imgts.sportpulseapiz.com/football/team/9k82rekh4jerepz/image/small"
-          },
-          "month": "7/5/2026",
-          "time": "6:35:00 PM",
-          "links": [
-            {
-              "name": "Link 1",
-              "url": "https://live2.pro2cdnlive.com/live/channel6.m3u8",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/8/link/channel6"
-            },
-            {
-              "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel6.m3u8?auth_key=3000001783244347-0-0-59642f0dff53c3f4ff321f109915ee63",
-              "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel6"
-            }
-          ]
-        }
-      ]
+      "matches": []
     }
   ]
 }

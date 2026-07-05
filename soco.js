@@ -9,6 +9,10 @@ const SPORT = "football";
 const OUTPUT_FILE = "football.json";
 const STREAM_CONCURRENCY = 8;
 const TIMEZONE = "Asia/Ho_Chi_Minh";
+const LEAGUE_FETCH_RETRIES = 3;
+const LEAGUE_FETCH_DELAY_MS = 1500;
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const HOT_LEAGUES = [
   {
@@ -31,9 +35,9 @@ const HOT_LEAGUES = [
   },
   {
     league_name: "KOR D1",
-    league_id: "gy0or5jhlxgqwzv",
+    league_id: "gy0or5jhexdqwzv",
     league_icon:
-      "https://imgts.sportpulseapiz.com/football/competition/gy0or5jhlxgqwzv/image/small",
+      "https://imgts.sportpulseapiz.com/football/competition/gy0or5jhexdqwzv/image/small",
   },
   {
     league_name: "CHA CSL",
@@ -126,22 +130,41 @@ async function fetchText(url, timeoutMs = 30000, referer = BASE_URL) {
   }
 }
 
-async function fetchLeagueHtml(leagueId) {
+async function fetchLeagueHtml(leagueId, leagueName = leagueId) {
   const url = `${BASE_URL}/sport/${SPORT}/filter/league/${leagueId}`;
-  const text = await fetchText(url);
-  const trimmed = text.trim();
 
-  if (!trimmed.startsWith("{")) {
-    throw new Error(`Invalid response for league ${leagueId}`);
+  for (let attempt = 1; attempt <= LEAGUE_FETCH_RETRIES; attempt++) {
+    try {
+      const text = await fetchText(url);
+      const trimmed = text.trim();
+
+      if (!trimmed.startsWith("{")) {
+        throw new Error(`non-JSON response (${trimmed.slice(0, 40)}...)`);
+      }
+
+      const payload = JSON.parse(trimmed);
+
+      if (!payload?.success || !Array.isArray(payload?.data?.htmls)) {
+        throw new Error("missing htmls in API payload");
+      }
+
+      return payload.data.htmls.join("");
+    } catch (error) {
+      const detail = error.message || String(error);
+      if (attempt < LEAGUE_FETCH_RETRIES) {
+        console.error(
+          `  ${leagueName}: retry ${attempt}/${LEAGUE_FETCH_RETRIES} (${detail})`
+        );
+        await sleep(LEAGUE_FETCH_DELAY_MS);
+        continue;
+      }
+
+      console.error(`  ${leagueName}: skipped (${detail})`);
+      return "";
+    }
   }
 
-  const payload = JSON.parse(trimmed);
-
-  if (!payload?.success || !Array.isArray(payload?.data?.htmls)) {
-    throw new Error(`Failed to load league ${leagueId}`);
-  }
-
-  return payload.data.htmls.join("");
+  return "";
 }
 
 function parseMatchesFromHtml(html, leagueMeta, allowedDates) {
@@ -392,10 +415,13 @@ async function scrapeSocolive(options = {}) {
   const allMatches = [];
 
   for (const league of HOT_LEAGUES) {
-    const html = await fetchLeagueHtml(league.league_id);
-    const matches = parseMatchesFromHtml(html, league, allowedDates);
+    const html = await fetchLeagueHtml(league.league_id, league.league_name);
+    const matches = html
+      ? parseMatchesFromHtml(html, league, allowedDates)
+      : [];
     console.error(`  ${league.league_name}: ${matches.length} matches`);
     allMatches.push(...matches);
+    await sleep(LEAGUE_FETCH_DELAY_MS);
   }
 
   const finalMatches = includeStreams
