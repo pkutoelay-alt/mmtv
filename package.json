@@ -1,0 +1,22 @@
+{
+  "name": "mmtvpro-socolive-scraper",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "scrape": "node soco.js",
+    "scrape:save": "node soco.js --save",
+    "scrape:basic": "node soco.js --basic --save",
+    "highlights": "node highlight.js",
+    "highlights:save": "node highlight.js --save",
+    "myanmartv": "node myanmartv.js",
+    "myanmartv:save": "node myanmartv.js --save",
+    "sync": "node sync-github.mjs",
+    "sync:loop": "node scheduler.mjs",
+    "sync:setup": "powershell -ExecutionPolicy Bypass -File scripts/setup-github.ps1"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "puppeteer": "^25.3.0"
+  }
+}
