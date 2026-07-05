@@ -28,12 +28,12 @@
           "links": [
             {
               "name": "Link 1",
-              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783243343-0-0-cd03964da6bd5fc1e665b941dc080e6e",
+              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783243904-0-0-d174ca977dfa3317e6a131c0ade04d5c",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel1"
             },
             {
               "name": "Link 2",
-              "url": "https://live1.pro2cdnlive.com/live/channel1.m3u8?wsSecret=0315f77b970850ce60a271b4a4a57dbc&wsABSTime=1783286543",
+              "url": "https://live1.pro2cdnlive.com/live/channel1.m3u8?wsSecret=121f587ecb18df8c19a46ed79a1e5e45&wsABSTime=1783287104",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/7/link/channel1"
             }
           ]
@@ -52,12 +52,12 @@
           "links": [
             {
               "name": "Link 1",
-              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783243343-0-0-cd03964da6bd5fc1e665b941dc080e6e",
+              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783243904-0-0-d174ca977dfa3317e6a131c0ade04d5c",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel1"
             },
             {
               "name": "Link 2",
-              "url": "https://live1.pro2cdnlive.com/live/channel1.m3u8?wsSecret=0315f77b970850ce60a271b4a4a57dbc&wsABSTime=1783286543",
+              "url": "https://live1.pro2cdnlive.com/live/channel1.m3u8?wsSecret=e3e9778e24fe7ef3bda32e90b150a93f&wsABSTime=1783287105",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/7/link/channel1"
             }
           ]
@@ -87,7 +87,7 @@
             },
             {
               "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel5.m3u8?auth_key=3000001783243343-0-0-bad1d821a09142ebb02b01f64e28efa0",
+              "url": "https://live3.procdnlive.com/livecdn/channel5.m3u8?auth_key=3000001783243905-0-0-ed1e56b99d8dc5be7adfe510c2db13be",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel5"
             }
           ]
@@ -111,7 +111,7 @@
             },
             {
               "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783243343-0-0-cd03964da6bd5fc1e665b941dc080e6e",
+              "url": "https://live3.procdnlive.com/livecdn/channel1.m3u8?auth_key=3000001783243905-0-0-b79688ec3967fa9dce9c5f1d20af0c07",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel1"
             }
           ]
@@ -135,7 +135,7 @@
             },
             {
               "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel11.m3u8?auth_key=3000001783243343-0-0-c0a9236c600136e09cdcb9e8a554ed54",
+              "url": "https://live3.procdnlive.com/livecdn/channel11.m3u8?auth_key=3000001783243905-0-0-2febf179695a48dd544e7ed4a8ba529a",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel11"
             }
           ]
@@ -165,7 +165,7 @@
             },
             {
               "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel15.m3u8?auth_key=3000001783243343-0-0-872bb0e4e3490b032892a9297852862b",
+              "url": "https://live3.procdnlive.com/livecdn/channel15.m3u8?auth_key=3000001783243905-0-0-3577dc35ff9ba106ff1fae95441850f6",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel15"
             }
           ]
@@ -189,7 +189,7 @@
             },
             {
               "name": "Link 2",
-              "url": "https://live3.procdnlive.com/livecdn/channel6.m3u8?auth_key=3000001783243343-0-0-d4d01fb4739f48093a666a9475635c03",
+              "url": "https://live3.procdnlive.com/livecdn/channel6.m3u8?auth_key=3000001783243905-0-0-22d7dc540e85d0335d3c3759960321cc",
               "reffer": "https://soco.buzzscorelinez.com/ajax/chanel/type/5/link/channel6"
             }
           ]
