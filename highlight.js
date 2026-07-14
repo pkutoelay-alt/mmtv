@@ -7,9 +7,6 @@ const OUTPUT_FILE = "highlight.json";
 const TIMEZONE = "Asia/Ho_Chi_Minh";
 const MATCH_DATE_RE = /_(\d{4})_(\d{2})_(\d{2})(?:[/?]|$)/;
 const RECENT_DAYS = 4;
-const CHROME_PATH =
-  process.env.CHROME_PATH ||
-  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 
 const args = process.argv.slice(2);
 const saveOutput = args.includes("--save");
@@ -145,16 +142,21 @@ function pickBestM3u8(urls) {
 }
 
 async function launchBrowser() {
-  return puppeteer.launch({
+  const launchOptions = {
     headless: true,
-    executablePath: CHROME_PATH,
     args: [
       "--no-sandbox",
       "--disable-dev-shm-usage",
       "--disable-extensions",
       "--disable-component-update",
     ],
-  });
+  };
+
+  if (process.env.CHROME_PATH) {
+    launchOptions.executablePath = process.env.CHROME_PATH;
+  }
+
+  return puppeteer.launch(launchOptions);
 }
 
 async function fetchHtml(page, url) {
