@@ -3,7 +3,10 @@ import { load } from "cheerio";
 import puppeteer from "puppeteer";
 
 const BASE_URL = "https://hoofoot.com/";
-const OUTPUT_FILE = "highlights.json";
+const OUTPUT_FILE = "highlight.json";
+const TIMEZONE = "Asia/Ho_Chi_Minh";
+const MATCH_DATE_RE = /_(\d{4})_(\d{2})_(\d{2})(?:[/?]|$)/;
+const RECENT_DAYS = 4;
 const CHROME_PATH =
   process.env.CHROME_PATH ||
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
@@ -11,6 +14,7 @@ const CHROME_PATH =
 const args = process.argv.slice(2);
 const saveOutput = args.includes("--save");
 const noM3u8 = args.includes("--no-m3u8");
+const includeAllDates = args.includes("--all-dates");
 const limitArg = args.find((a) => a.startsWith("--limit="));
 const limit = limitArg ? Number(limitArg.split("=")[1]) : Infinity;
 
@@ -18,6 +22,38 @@ const USER_AGENT =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function getDateFilterRange() {
+  const today = new Date().toLocaleDateString("en-CA", { timeZone: TIMEZONE });
+  const base = new Date(`${today}T00:00:00+07:00`);
+  const dates = [];
+
+  for (let offset = 0; offset <= RECENT_DAYS; offset += 1) {
+    const day = new Date(base);
+    day.setDate(day.getDate() - offset);
+    dates.push(day.toLocaleDateString("en-CA", { timeZone: TIMEZONE }));
+  }
+
+  return {
+    today,
+    recent_days: RECENT_DAYS,
+    dates,
+    allowed: new Set(dates),
+  };
+}
+
+function extractMatchDateKey(url) {
+  const match = url.match(MATCH_DATE_RE);
+  if (!match) return null;
+  return `${match[1]}-${match[2]}-${match[3]}`;
+}
+
+function filterHighlightsByDate(items, allowed) {
+  return items.filter((item) => {
+    const dateKey = extractMatchDateKey(item.url);
+    return dateKey && allowed.has(dateKey);
+  });
+}
 
 function absUrl(url, base = BASE_URL) {
   if (!url) return "";
@@ -51,7 +87,9 @@ function parseHighlights(html) {
       anchor.find("img").attr("alt")?.trim() ||
       "";
 
-    items.push({ title, img, url });
+    const match_date = extractMatchDateKey(url);
+
+    items.push({ title, img, url, match_date });
   });
 
   return items;
@@ -186,12 +224,23 @@ async function main() {
   console.error("Fetching homepage:", BASE_URL);
   const homeHtml = await fetchHtml(page, BASE_URL);
   let highlights = parseHighlights(homeHtml);
+  const dateFilter = getDateFilterRange();
+
+  console.error(
+    `Date filter (${TIMEZONE}): today=${dateFilter.today}, last ${dateFilter.recent_days} days (${dateFilter.dates.at(-1)} .. ${dateFilter.today})`
+  );
+  console.error(`Found ${highlights.length} highlights on homepage`);
+
+  if (!includeAllDates) {
+    highlights = filterHighlightsByDate(highlights, dateFilter.allowed);
+    console.error(
+      `Keeping ${highlights.length} highlights for today + last ${dateFilter.recent_days} days`
+    );
+  }
 
   if (Number.isFinite(limit) && limit > 0) {
     highlights = highlights.slice(0, limit);
   }
-
-  console.error(`Found ${highlights.length} highlights`);
 
   if (!noM3u8) {
     for (let i = 0; i < highlights.length; i += 1) {
@@ -214,6 +263,12 @@ async function main() {
   const output = {
     source: BASE_URL,
     scraped_at: new Date().toISOString(),
+    date_filter: {
+      timezone: TIMEZONE,
+      today: dateFilter.today,
+      recent_days: dateFilter.recent_days,
+      dates: dateFilter.dates,
+    },
     count: highlights.length,
     highlights,
   };

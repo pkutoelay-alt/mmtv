@@ -1,8 +1,12 @@
-import { execSync, spawnSync } from "child_process";
+import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { loadProjectEnv } from "./lib/load-env.mjs";
+import {
+  jsonContentChanged,
+  readLocalJsonSnapshot,
+} from "./lib/json-compare.mjs";
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 loadProjectEnv(ROOT);
@@ -19,11 +23,21 @@ function normalizeRepo(value) {
 }
 
 const BRANCH = process.env.GITHUB_BRANCH || "main";
-const GIT_NAME = process.env.GITHUB_NAME || "mmtvpro-bot";
-const GIT_EMAIL = process.env.GITHUB_EMAIL || "bot@local";
 const SKIP_HIGHLIGHTS = process.env.SKIP_HIGHLIGHTS !== "0";
 const SKIP_SCRAPE = process.env.SKIP_SCRAPE === "1";
 const SKIP_TOKEN_CHECK = process.env.SKIP_TOKEN_CHECK === "1";
+
+const UPLOAD_FILES = (process.env.SYNC_FILES || "soco.json,highlight.json,myanmartv.json")
+  .split(",")
+  .map((name) => name.trim())
+  .filter(Boolean);
+
+const API_HEADERS = {
+  Authorization: `Bearer ${TOKEN}`,
+  Accept: "application/vnd.github+json",
+  "User-Agent": "mmtvpro-sync",
+  "X-GitHub-Api-Version": "2022-11-28",
+};
 
 const READ_ONLY_HELP =
   "GitHub token is read-only. Open https://github.com/settings/tokens, edit the token, " +
@@ -32,46 +46,6 @@ const READ_ONLY_HELP =
 
 function log(message) {
   console.error(`[sync] ${message}`);
-}
-
-function authRemoteUrl() {
-  return `https://x-access-token:${encodeURIComponent(TOKEN)}@github.com/${REPO}.git`;
-}
-
-function runGit(...argv) {
-  let options = {};
-  const last = argv[argv.length - 1];
-  if (last && typeof last === "object" && "allowFail" in last) {
-    options = argv.pop();
-  }
-
-  const result = spawnSync(
-    "git",
-    ["-c", "credential.helper=", ...argv],
-    {
-      cwd: ROOT,
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "pipe"],
-      maxBuffer: 10 * 1024 * 1024,
-      env: { ...process.env, GIT_TERMINAL_PROMPT: "0" },
-    }
-  );
-
-  const detail = `${result.stderr || ""}${result.stdout || ""}`.trim();
-
-  if (result.status !== 0) {
-    if (options.allowFail) return detail;
-    throw new Error(formatGitError(detail || `git ${argv.join(" ")} failed`));
-  }
-
-  return detail;
-}
-
-function formatGitError(message) {
-  if (/403|denied|read.?only/i.test(message)) {
-    return `${message}\n\n${READ_ONLY_HELP}`;
-  }
-  return message;
 }
 
 function run(command, options = {}) {
@@ -92,12 +66,7 @@ async function validateTokenWriteAccess() {
 
   const res = await fetch(`https://api.github.com/repos/${REPO}/git/blobs`, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${TOKEN}`,
-      Accept: "application/vnd.github+json",
-      "Content-Type": "application/json",
-      "User-Agent": "mmtvpro-sync",
-    },
+    headers: { ...API_HEADERS, "Content-Type": "application/json" },
     body: JSON.stringify({
       content: Buffer.from("mmtvpro-check").toString("base64"),
       encoding: "base64",
@@ -115,7 +84,7 @@ async function validateTokenWriteAccess() {
   if (res.status === 409) {
     const body = await res.text();
     if (/empty/i.test(body)) {
-      log("Repository is empty; token check passed, first push will initialize it");
+      log("Repository is empty; JSON upload will initialize it");
       return;
     }
   }
@@ -128,38 +97,14 @@ async function validateTokenWriteAccess() {
   log("Token write access verified");
 }
 
-function ensureGitRepo() {
-  if (fs.existsSync(path.join(ROOT, ".git"))) return;
-
-  log("Initializing git repository...");
+function runScraper(label, command) {
   try {
-    runGit("init", "-b", BRANCH);
-  } catch {
-    runGit("init");
-    runGit("checkout", "-b", BRANCH);
+    log(`Running ${label}...`);
+    run(command, { inherit: true });
+  } catch (error) {
+    const detail = error.stderr?.toString?.() || error.message || String(error);
+    log(`${label} failed, continuing sync (${detail.split("\n")[0]})`);
   }
-}
-
-function ensureRemote() {
-  if (!TOKEN || !REPO) {
-    throw new Error("Set GITHUB_TOKEN and GITHUB_REPO in .env or environment");
-  }
-
-  const remoteUrl = authRemoteUrl();
-  let remotes = "";
-
-  try {
-    remotes = runGit("remote");
-  } catch {
-    remotes = "";
-  }
-
-  if (!remotes.includes("origin")) {
-    runGit("remote", "add", "origin", remoteUrl);
-    return;
-  }
-
-  runGit("remote", "set-url", "origin", remoteUrl);
 }
 
 function runScrapers() {
@@ -168,63 +113,111 @@ function runScrapers() {
     return;
   }
 
-  log("Running soco.js...");
-  run("node soco.js --save", { inherit: true });
-
-  log("Running myanmartv.js...");
-  run("node myanmartv.js --save", { inherit: true });
+  runScraper("soco.js", "node soco.js --save");
+  runScraper("myanmartv.js", "node myanmartv.js --save");
 
   if (!SKIP_HIGHLIGHTS) {
-    log("Running highlight.js...");
-    run("node highlight.js --save", { inherit: true });
+    runScraper("highlight.js", "node highlight.js --save");
   } else {
     log("Skipping highlight.js (set SKIP_HIGHLIGHTS=0 to enable)");
   }
 }
 
-function commitAndPush() {
-  runGit("add", "-A");
+async function getRemoteFileSha(filename) {
+  const res = await fetch(
+    `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(filename)}?ref=${encodeURIComponent(BRANCH)}`,
+    { headers: API_HEADERS }
+  );
 
-  const status = runGit("status", "--porcelain", { allowFail: true });
-  if (!status) {
-    log("No changes to commit");
-    pushToGitHub();
-    return;
+  if (res.status === 404) return null;
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Could not read ${filename} on GitHub (${res.status}): ${body.slice(0, 200)}`);
   }
 
-  const stamp = new Date().toISOString();
-  const message = `Auto sync ${stamp}`;
-
-  runGit(
-    "-c",
-    `user.name=${GIT_NAME}`,
-    "-c",
-    `user.email=${GIT_EMAIL}`,
-    "commit",
-    "-m",
-    message
-  );
-  log(`Committed: ${message}`);
-  pushToGitHub();
+  const data = await res.json();
+  return data.sha || null;
 }
 
-function pushToGitHub() {
-  try {
-    runGit("push", "-u", "origin", BRANCH);
-    log("Pushed to GitHub");
-    return;
-  } catch (firstError) {
-    const msg = firstError.message || "";
-    if (!/non-fast-forward|fetch first|rejected|diverged/i.test(msg)) {
-      throw firstError;
-    }
-    log("Remote has new commits, rebasing then pushing...");
+async function uploadJsonFile(filename) {
+  const localPath = path.join(ROOT, filename);
+  if (!fs.existsSync(localPath)) {
+    log(`Skipping ${filename} (not found locally)`);
+    return false;
   }
 
-  runGit("fetch", "origin", BRANCH);
-  runGit("pull", "--rebase", "--autostash", "origin", BRANCH);
-  runGit("push", "-u", "origin", BRANCH);
-  log("Pushed to GitHub");
+  const content = fs.readFileSync(localPath);
+  const sha = await getRemoteFileSha(filename);
+  const stamp = new Date().toISOString();
+
+  const res = await fetch(
+    `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(filename)}`,
+    {
+      method: "PUT",
+      headers: { ...API_HEADERS, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: `Update ${filename} ${stamp}`,
+        content: content.toString("base64"),
+        branch: BRANCH,
+        ...(sha ? { sha } : {}),
+      }),
+    }
+  );
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Upload failed for ${filename} (${res.status}): ${body.slice(0, 200)}`);
+  }
+
+  log(`Uploaded ${filename}`);
+  return true;
+}
+
+function snapshotUploadFiles() {
+  const snapshots = new Map();
+
+  for (const filename of UPLOAD_FILES) {
+    snapshots.set(filename, readLocalJsonSnapshot(ROOT, filename));
+  }
+
+  return snapshots;
+}
+
+function getChangedUploadFiles(beforeSnapshots) {
+  const changed = [];
+
+  for (const filename of UPLOAD_FILES) {
+    const localPath = path.join(ROOT, filename);
+    if (!fs.existsSync(localPath)) {
+      log(`Skipping ${filename} (not found locally after scrape)`);
+      continue;
+    }
+
+    const beforeContent = beforeSnapshots.get(filename) ?? null;
+    const afterContent = fs.readFileSync(localPath, "utf8");
+
+    if (jsonContentChanged(beforeContent, afterContent)) {
+      changed.push(filename);
+    } else {
+      log(`No changes in ${filename}`);
+    }
+  }
+
+  return changed;
+}
+
+async function uploadJsonFiles(filenames = UPLOAD_FILES) {
+  let uploaded = 0;
+
+  for (const filename of filenames) {
+    if (await uploadJsonFile(filename)) uploaded++;
+  }
+
+  if (uploaded === 0) {
+    throw new Error("No JSON files were uploaded.");
+  }
+
+  log(`Uploaded ${uploaded} file(s) to ${REPO}`);
 }
 
 async function main() {
@@ -237,11 +230,19 @@ async function main() {
     throw new Error("GITHUB_REPO is not set (example: username/mmtvpro)");
   }
 
-  await validateTokenWriteAccess();
-  ensureGitRepo();
-  ensureRemote();
+  const beforeSnapshots = snapshotUploadFiles();
   runScrapers();
-  commitAndPush();
+
+  const changedFiles = getChangedUploadFiles(beforeSnapshots);
+  if (changedFiles.length === 0) {
+    log("No JSON changes detected, skipping GitHub upload");
+    log("Sync complete");
+    return;
+  }
+
+  log(`Changed files: ${changedFiles.join(", ")}`);
+  await validateTokenWriteAccess();
+  await uploadJsonFiles(changedFiles);
   log("Sync complete");
 }
 

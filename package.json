@@ -11,8 +11,12 @@
     "highlights:save": "node highlight.js --save",
     "myanmartv": "node myanmartv.js",
     "myanmartv:save": "node myanmartv.js --save",
+    "movies": "node movies.js",
+    "movies:save": "node movies.js --save",
     "sync": "node sync-github.mjs",
     "sync:loop": "node scheduler.mjs",
+    "sync:movies": "node sync-movies.mjs",
+    "sync:movies:loop": "node movies-scheduler.mjs",
     "sync:setup": "powershell -ExecutionPolicy Bypass -File scripts/setup-github.ps1"
   },
   "dependencies": {

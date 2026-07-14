@@ -6,7 +6,7 @@ dns.setDefaultResultOrder("ipv4first");
 
 const BASE_URL = "https://socolivemm.io";
 const SPORT = "football";
-const OUTPUT_FILE = "football.json";
+const OUTPUT_FILE = "soco.json";
 const STREAM_CONCURRENCY = 8;
 const TIMEZONE = "Asia/Ho_Chi_Minh";
 const LEAGUE_FETCH_RETRIES = 3;

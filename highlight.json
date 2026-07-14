@@ -1,0 +1,107 @@
+{
+  "source": "https://hoofoot.com/",
+  "scraped_at": "2026-07-05T15:38:23.858Z",
+  "date_filter": {
+    "timezone": "Asia/Ho_Chi_Minh",
+    "today": "2026-07-05",
+    "recent_days": 4,
+    "dates": [
+      "2026-07-05",
+      "2026-07-04",
+      "2026-07-03",
+      "2026-07-02",
+      "2026-07-01"
+    ]
+  },
+  "count": 11,
+  "highlights": [
+    {
+      "title": "Paraguay v France",
+      "img": "https://th.hoofoot.com/pics/37691.jpg",
+      "url": "https://hoofoot.com/?match=Paraguay_v_France_2026_07_04",
+      "match_date": "2026-07-04",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/KcvDRkRlacD4p",
+      "m3u8": "https://hlsx2.flashframenetwork.com/upfiles/source/hls/51/318193/manifest/0.m3u8?token=b3JycktIOHo0d2c1V2tHTnpybmN0NnFFMk51V2NqVkE2alc2ODBHYzRudz06VXBGaWxlcy8yMDI2LzcvNS81MS8zMTgxOTMvMC5tM3U4OiUyRiUyRmhsc3gyLmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjExMzU5NTUyMjk=&keypair=ZjVwT2QwRWMvTG40Y0VRaTJYNGtRbU42ZGdkTThLUVFqQVlvcXpEREpyWT06VXBGaWxlcy8yMDI2LzcvNS81MS8zMTgxOTMvOiUyRiUyRmhsc3gyLmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjExMzU5NTUyMjk="
+    },
+    {
+      "title": "Canada v Morocco",
+      "img": "https://th.hoofoot.com/pics/37690.jpg",
+      "url": "https://hoofoot.com/?match=Canada_v_Morocco_2026_07_04",
+      "match_date": "2026-07-04",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/gRgVgMom75j5F",
+      "m3u8": "https://hls86.flashframenetwork.com/upfiles/source/hls/51/318188/manifest/0.m3u8?token=Mi9FaWxKTFA5V3lWang1blVzTDFHdFBHQnZFMGdTUnBtUU5yemc2M2ZpUT06VXBGaWxlcy8yMDI2LzcvNC81MS8zMTgxODgvMC5tM3U4OiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjEzMTMxNDgyNTY=&keypair=NXpCdGlYUnlYazdjdkdOaDN1QUp3dVZZZDlEdWFnZUVob0kvR0Fpc1RvTT06VXBGaWxlcy8yMDI2LzcvNC81MS8zMTgxODgvOiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjEzMTMxNDgyNTY="
+    },
+    {
+      "title": "Argentina v Cape Verde",
+      "img": "https://th.hoofoot.com/pics/37688.jpg",
+      "url": "https://hoofoot.com/?match=Argentina_v_Cape_Verde_2026_07_03",
+      "match_date": "2026-07-03",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/yaviIk0904bwp",
+      "m3u8": "https://hlsx2.flashframenetwork.com/upfiles/source/hls/51/318176/manifest/0.m3u8?token=REJOQitOY2VrcUF2K0JpSCtTbVI0MFNzdm5ydVVYOUJGakEzdmRGOEljST06VXBGaWxlcy8yMDI2LzcvNC81MS8zMTgxNzYvMC5tM3U4OiUyRiUyRmhsc3gyLmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjE0ODY1OTExNzY=&keypair=SDZ2SDBNdHRoVkdlOUZNZThqd0VzN09Hc0JmRGlGa3hGN1RORWIvMURNbz06VXBGaWxlcy8yMDI2LzcvNC81MS8zMTgxNzYvOiUyRiUyRmhsc3gyLmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjE0ODY1OTExNzY="
+    },
+    {
+      "title": "Australia v Egypt",
+      "img": "https://th.hoofoot.com/pics/37687.jpg",
+      "url": "https://hoofoot.com/?match=Australia_v_Egypt_2026_07_03",
+      "match_date": "2026-07-03",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/mbsLhbuUzackc",
+      "m3u8": "https://hlsx2.flashframenetwork.com/upfiles/source/hls/51/318164/manifest/0.m3u8?token=RmlTYndISys3ZkFGU0NxSnVRTkc2Tks3eWdKbForVGxla1VsZHNhUGY3QT06VXBGaWxlcy8yMDI2LzcvNC81MS8zMTgxNjQvMC5tM3U4OiUyRiUyRmhsc3gyLmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjE2NTMzMTUxMTM=&keypair=RXJoandmUTBSU1l4ZjUyTjZvK1dxbEVnU3VVQ2FKOTg2L3dzUXJtL3gwOD06VXBGaWxlcy8yMDI2LzcvNC81MS8zMTgxNjQvOiUyRiUyRmhsc3gyLmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjE2NTMzMTUxMTM="
+    },
+    {
+      "title": "Colombia v Ghana",
+      "img": "https://th.hoofoot.com/pics/37689.jpg",
+      "url": "https://hoofoot.com/?match=Colombia_v_Ghana_2026_07_03",
+      "match_date": "2026-07-03",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/M9QOtp7OCHuIg",
+      "m3u8": "https://hls86.flashframenetwork.com/upfiles/source/hls/51/318179/manifest/0.m3u8?token=azVEY1o5aC9OUlIzMXZCRmlBYTkvV0hHdTlCVklwZlp4ejE0a3lYSHQzOD06VXBGaWxlcy8yMDI2LzcvNC81MS8zMTgxNzkvMC5tM3U4OiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjE4MTg2MzI3NTg=&keypair=OHlNVVBtS1MvdXFrSUx5S3krMkJiUW11NmZ0Tml2L0pGNUpaZ2QwUkd4cz06VXBGaWxlcy8yMDI2LzcvNC81MS8zMTgxNzkvOiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjE4MTg2MzI3NTg="
+    },
+    {
+      "title": "Portugal v Croatia",
+      "img": "https://th.hoofoot.com/pics/37685.jpg",
+      "url": "https://hoofoot.com/?match=Portugal_v_Croatia_2026_07_02",
+      "match_date": "2026-07-02",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/h4r0leWxHQmg8",
+      "m3u8": "https://hls86.flashframenetwork.com/upfiles/source/hls/51/318150/manifest/0.m3u8?token=Z1l0VTE5TDJ3eTg3T3JWM0ZqOVRSS2FzeDlNOVZTWldQQkRhK1ErUzlOST06VXBGaWxlcy8yMDI2LzcvMy81MS8zMTgxNTAvMC5tM3U4OiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjE5OTA4MjU2NDQ=&keypair=dUFJT0dZTlkzZ1BZb0xHeFVhTUh6ckZnSWZXT0k1Ly9YMXhuVjd2M2dkMD06VXBGaWxlcy8yMDI2LzcvMy81MS8zMTgxNTAvOiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjE5OTA4MjU2NDQ="
+    },
+    {
+      "title": "Spain v Austria",
+      "img": "https://th.hoofoot.com/pics/37684.jpg",
+      "url": "https://hoofoot.com/?match=Spain_v_Austria_2026_07_02",
+      "match_date": "2026-07-02",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/3Y3GABJZpXEln",
+      "m3u8": "https://hls86.flashframenetwork.com/upfiles/source/hls/51/318138/manifest/0.m3u8?token=VGFpTHhsZWNnRUlvYjZPRExKK0E4TzZsOVpic1ZPZU51ZGtlajM5WThhdz06VXBGaWxlcy8yMDI2LzcvMy81MS8zMTgxMzgvMC5tM3U4OiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjIxNjI3MDU5OTQ=&keypair=Q2FvMTBIc0FsS1lIQTk4Z2dGYVQzdCt6WVhLY1BBc1hLd01ONTJsa1hZZz06VXBGaWxlcy8yMDI2LzcvMy81MS8zMTgxMzgvOiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjIxNjI3MDU5OTQ="
+    },
+    {
+      "title": "Switzerland v Algeria",
+      "img": "https://th.hoofoot.com/pics/37686.jpg",
+      "url": "https://hoofoot.com/?match=Switzerland_v_Algeria_2026_07_02",
+      "match_date": "2026-07-02",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/FOl1EmXtSDTEK",
+      "m3u8": "https://hls86.flashframenetwork.com/upfiles/source/hls/51/318157/manifest/0.m3u8?token=S0JQd25RMEwvVnZDclc5QVhMSFd2LzdHYmtNd3dqTDhBWEtzdGtsWm5ZND06VXBGaWxlcy8yMDI2LzcvMy81MS8zMTgxNTcvMC5tM3U4OiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjIzMjgzMzYxNTY=&keypair=OUJ1aFg0WlFiUXlUaFBGS1c5aUJTa3pGaU53bmdkNjNBQUVWNFd2NmhZND06VXBGaWxlcy8yMDI2LzcvMy81MS8zMTgxNTcvOiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjIzMjgzMzYxNTY="
+    },
+    {
+      "title": "England v DR Congo",
+      "img": "https://th.hoofoot.com/pics/37681.jpg",
+      "url": "https://hoofoot.com/?match=England_v_DR_Congo_2026_07_01",
+      "match_date": "2026-07-01",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/rSs76BffijS0p",
+      "m3u8": "https://hls86.flashframenetwork.com/upfiles/source/hls/51/318109/manifest/0.m3u8?token=cXNmOHlxOFpNeS9jR3pVWURDTUZLRVBGQXVsVzc2SnppYVV3cFRhWHpkYz06VXBGaWxlcy8yMDI2LzcvMS81MS8zMTgxMDkvMC5tM3U4OiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjI0OTU1Mjg4NzY=&keypair=TkRMYzMzUzlEQUZ3YTVKbTNRUUhnNlZpdk9iOWdYZ1dZQnNiTCtvWEpqbz06VXBGaWxlcy8yMDI2LzcvMS81MS8zMTgxMDkvOiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjI0OTU1Mjg4NzY="
+    },
+    {
+      "title": "Belgium v Senegal",
+      "img": "https://th.hoofoot.com/pics/37682.jpg",
+      "url": "https://hoofoot.com/?match=Belgium_v_Senegal_2026_07_01",
+      "match_date": "2026-07-01",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/DBppZJZUvLyjH",
+      "m3u8": "https://hls86.flashframenetwork.com/upfiles/source/hls/51/318123/manifest/0.m3u8?token=VThyMHQvRGo4Tzl1eTdWU2V4QXEzME9qa0JWNkpKcC9ucWNhRmVRR05Qdz06VXBGaWxlcy8yMDI2LzcvMi81MS8zMTgxMjMvMC5tM3U4OiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjI2NjMwMzQwODA=&keypair=bjJranFFV3QvM2h5Rk5oZldFSGx2VjMvaXhDdkp6VThZb0ROODhyLys2Yz06VXBGaWxlcy8yMDI2LzcvMi81MS8zMTgxMjMvOiUyRiUyRmhsczg2LmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjI2NjMwMzQwODA="
+    },
+    {
+      "title": "USA v Bosnia",
+      "img": "https://th.hoofoot.com/pics/37683.jpg",
+      "url": "https://hoofoot.com/?match=USA_v_Bosnia_2026_07_01",
+      "match_date": "2026-07-01",
+      "embed_url": "https://hoohfooha.vibedailyhighlights.com/embed/lO8wro4TRVVBF",
+      "m3u8": "https://hlsx2.flashframenetwork.com/upfiles/source/hls/51/318128/manifest/0.m3u8?token=cnhuSklzZTVTbU9WKy9EYStzRXFWR3lMaEhjZk5HTXV0WmRJWTRQUVl0dz06VXBGaWxlcy8yMDI2LzcvMi81MS8zMTgxMjgvMC5tM3U4OiUyRiUyRmhsc3gyLmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjI4MzI0MTQzNjk=&keypair=ZEZkbnk3ZHd2Z1pYYmtUaWNLR0xrdkMzOVJNWHIySFNWQ3k0S0UzMFBjbz06VXBGaWxlcy8yMDI2LzcvMi81MS8zMTgxMjgvOiUyRiUyRmhsc3gyLmZsYXNoZnJhbWVuZXR3b3JrLmNvbSUyRjo2MzkxODg2NjI4MzI0MTQzNjk="
+    }
+  ]
+}

@@ -1,11 +1,15 @@
-# Registers a Windows Task Scheduler job to scrape and push every 5 minutes.
+# Registers a Windows Task Scheduler job to scrape movies every 15 days.
 # Run once as Administrator from project root:
-#   powershell -ExecutionPolicy Bypass -File scripts/install-sync-task.ps1
+#   powershell -ExecutionPolicy Bypass -File scripts/install-movies-task.ps1
 
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
-$NodePath = (Get-Command node).Source
-$TaskName = "MMTVPro-GitHub-Sync"
-$WrapperScript = Join-Path $PSScriptRoot "run-sync.ps1"
+$TaskName = "MMTVPro-Movies-Sync"
+$WrapperScript = Join-Path $PSScriptRoot "run-movies-sync.ps1"
+$IntervalDays = 15
+
+if ($env:MOVIES_SYNC_INTERVAL_DAYS) {
+  $IntervalDays = [int]$env:MOVIES_SYNC_INTERVAL_DAYS
+}
 
 $Action = New-ScheduledTaskAction `
   -Execute "powershell.exe" `
@@ -13,7 +17,7 @@ $Action = New-ScheduledTaskAction `
   -WorkingDirectory $ProjectRoot
 
 $Trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) `
-  -RepetitionInterval (New-TimeSpan -Minutes 5) `
+  -RepetitionInterval (New-TimeSpan -Days $IntervalDays) `
   -RepetitionDuration ([TimeSpan]::MaxValue)
 
 $Settings = New-ScheduledTaskSettingsSet `
@@ -27,11 +31,10 @@ Register-ScheduledTask `
   -Action $Action `
   -Trigger $Trigger `
   -Settings $Settings `
-  -Description "Scrape mmtvpro data every 5 minutes and push JSON to GitHub only when changed" `
+  -Description "Scrape mycinema.asia movies every $IntervalDays days and push movies.json only when changed" `
   -Force
 
 Write-Host "Installed scheduled task: $TaskName"
+Write-Host "Interval: every $IntervalDays days"
 Write-Host "Project: $ProjectRoot"
-Write-Host "Wrapper: $WrapperScript"
-Write-Host "Configure credentials in .env (copy from .env.example), then run:"
-Write-Host "  powershell -ExecutionPolicy Bypass -File scripts/setup-github.ps1"
+Write-Host "Optional: set MYCINEMA_TOKEN in .env for m3u8 watch links"
